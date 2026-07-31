@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric Ellis</title>
-    <!-- Link to our external CSS stylesheet -->
+    <title>My Personal Website & Game</title>
+    <!-- Link to our external stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,22 +12,32 @@
     <!-- Main header section -->
     <header>
         <h1>Welcome to My Website!</h1>
-        <p>Built with HTML, CSS, and JavaScript, hosted on GitHub Pages.</p>
+        <p>Built with HTML, CSS, and JavaScript.</p>
     </header>
 
-    <!-- Interactive main content section -->
     <main>
+        <!-- About Me Section -->
+        <section class="card about-card">
+            <h2>👋 About Me</h2>
+            <p>Hi there! I'm a passionate young developer learning how to build websites and code games.</p>
+            <p>When I'm not coding, I love exploring technology, playing video games, and building cool projects.</p>
+        </section>
+
+        <!-- Mini Game Section -->
         <section class="card">
-            <h2>Interactive Section</h2>
-            <p>Click the button below to see JavaScript in action!</p>
-            <button id="colorButton">Click Me!</button>
+            <h2>🎮 Number Guessing Game</h2>
+            <p>Guess a number between 1 and 10!</p>
+            
+            <!-- Input and Guess Button -->
+            <div class="game-box">
+                <input type="number" id="userGuess" min="1" max="10" placeholder="Enter a number">
+                <button id="guessBtn">Submit Guess</button>
+            </div>
+            
+            <!-- Message area to display game feedback -->
+            <p id="gameMessage" class="message"></p>
         </section>
     </main>
-
-    <!-- Footer section -->
-    <footer>
-        <p>&copy; 2026 Future Web Developer</p>
-    </footer>
 
     <!-- Link to our external JavaScript file -->
     <script src="script.js"></script>
