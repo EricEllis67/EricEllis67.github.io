@@ -3,53 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My College Portfolio</title>
+    <title>My College Portfolio & Game</title>
     <!-- Link to our external CSS file for styling -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>Welcome to My Portfolio</h1>
-        <p>Future College Student & Aspiring Developer</p>
-    </header>
+    <!-- Main Wrapper to Center Everything Beautifully -->
+    <div class="container">
 
-    <!-- Main Content Container with Different Areas -->
-    <main>
+        <!-- Header Section -->
+        <header>
+            <h1>My Portfolio</h1>
+            <p class="subtitle">Future College Student & Aspiring Developer</p>
+        </header>
+
+        <!-- Navigation Tabs / Quick Links -->
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#goals">Goals</a>
+            <a href="#game">Mini Game</a>
+        </nav>
+
         <!-- About Me Section -->
-        <section class="card">
+        <section id="about" class="card">
             <h2>About Me</h2>
-            <p>Hi there! Write a short bio here about who you are, what you love to study, and what drives you.</p>
+            <p>Hi there! Welcome to my digital space. I'm passionate about technology, creative problem-solving, and building cool things for the web.</p>
         </section>
 
         <!-- Education & Skills Section -->
-        <section class="card">
+        <section id="education" class="card">
             <h2>Education & Skills</h2>
-            <p>List your high school achievements, favorite subjects, or technical skills like HTML, CSS, and JavaScript.</p>
+            <p><strong>High School:</strong> Expected Graduation 2027<br>
+            <strong>Skills:</strong> HTML5, CSS3, JavaScript, UI/UX Design Basics</p>
         </section>
 
         <!-- Future Goals Section -->
-        <section class="card">
+        <section id="goals" class="card">
             <h2>College Goals</h2>
-            <p>Share what major you want to pursue, what colleges you're eyeing, and what your dream career is!</p>
+            <p>Planning to major in Computer Science or Software Engineering to build applications that make a positive impact.</p>
         </section>
 
-        <!-- New Mini Game Section -->
-        <section class="card">
-            <h2>Mini Game: Guess My Lucky Number!</h2>
-            <p>I'm thinking of a number between 1 and 10. Can you guess it?</p>
-            <input type="number" id="guessInput" min="1" max="10" placeholder="Enter a number">
-            <button id="guessBtn">Submit Guess</button>
+        <!-- Mini Game Section -->
+        <section id="game" class="card game-card">
+            <h2>Mini Game: Guess My Number</h2>
+            <p>Pick a number between 1 and 10:</p>
+            <div class="game-controls">
+                <input type="number" id="guessInput" min="1" max="10" placeholder="1-10">
+                <button id="guessBtn">Guess</button>
+            </div>
             <p id="gameMessage"></p>
         </section>
-    </main>
 
-    <!-- Interactive Button Section -->
-    <footer>
-        <button id="greetBtn">Click to Say Hello!</button>
-        <p id="message"></p>
-    </footer>
+        <!-- Footer / Interactive Greeting -->
+        <footer>
+            <button id="greetBtn" class="accent-btn">Click to Say Hello!</button>
+            <p id="message"></p>
+        </footer>
+
+    </div>
 
     <!-- Link to our standard JavaScript file for interactivity -->
     <script src="script.js"></script>
