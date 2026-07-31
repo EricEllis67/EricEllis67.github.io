@@ -1,4 +1,4 @@
-// script.js - Handles interactivity for the greeting and mini-game
+{// script.js - Handles interactivity for the greeting and mini-game
 
 // --- Greeting Button Logic ---
 const greetBtn = document.getElementById('greetBtn');
@@ -8,7 +8,23 @@ greetBtn.addEventListener('click', function() {
     message.textContent = "✨ Thanks for visiting! I'm excited for my future in tech.";
     message.style.color = "#00ffff";
 });
-
+/* Force the root HTML element to be black */
+html {
+    background-color: #050505;
+}
+{
+/* Set up the overall page with a rich black background and centered alignment */
+body {
+    background-color: #050505; /* Deep, premium black */
+    color: #e0e0e0;             /* Soft white for comfortable reading */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 // --- Mini Game Logic ---
 // Generate a random lucky number between 1 and 10
 const secretNumber = Math.floor(Math.random() * 10) + 1;
