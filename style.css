@@ -1,5 +1,30 @@
 // Wait for the HTML document to fully load before running code
 document.addEventListener('DOMContentLoaded', () => {
+  /* style.css - Controls the design and appearance of your website */
+
+/* Style the entire body of the webpage */
+body {
+    /* Sets the background color to black */
+    background-color: #000000;
+    
+    /* Sets the text color to white so it is readable against the black background */
+    color: #ffffff;
+    
+    /* Sets a clean, modern font for the whole page */
+    font-family: Arial, sans-serif;
+    
+    /* Adds some space around the edges of the page */
+    margin: 40px;
+    
+    /* Centers the text (you can change this to 'left' if you prefer) */
+    text-align: center;
+}
+
+/* Style for the main heading */
+h1 {
+    /* Gives our main title a cool neon cyan color to pop against the black */
+    color: #00ffff;
+}
     
     // Generate a random secret number between 1 and 10 for the game
     let secretNumber = Math.floor(Math.random() * 10) + 1;
