@@ -1,67 +1,42 @@
-/* Global styles and dark theme color palette */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1a1a1a; /* Rich dark background for the whole page */
-    color: #f0f0f0; /* Bright, easy-to-read light gray text */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
-    text-align: center;
-}
+// Wait for the HTML document to fully load before running code
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Generate a random secret number between 1 and 10 for the game
+    let secretNumber = Math.floor(Math.random() * 10) + 1;
+    
+    // Grab elements from our HTML document
+    const guessBtn = document.getElementById('guessBtn');
+    const userGuessInput = document.getElementById('userGuess');
+    const gameMessage = document.getElementById('gameMessage');
 
-/* Header styling */
-header {
-    background-color: #111111; /* Deep charcoal header */
-    color: #ffffff;
-    padding: 2rem;
-    border-bottom: 1px solid #333333; /* Subtle dividing line */
-}
+    // Add an event listener to listen for a 'click' on the guess button
+    guessBtn.addEventListener('click', () => {
+        // Convert the user's input text into a number
+        const userGuess = Number(userGuessInput.value);
 
-header h1 {
-    margin-bottom: 0.5rem;
-}
+        // Validate if the input is empty or out of range
+        if (!userGuess || userGuess < 1 || userGuess > 10) {
+            gameMessage.textContent = "⚠️ Please enter a number between 1 and 10!";
+            gameMessage.style.color = "#e67e22";
+            return;
+        }
 
-/* Main content styling */
-main {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-}
+        // Check if the user's guess matches the secret number
+        if (userGuess === secretNumber) {
+            gameMessage.textContent = "🎉 Correct! You won the game!";
+            gameMessage.style.color = "#27ae60";
+            
+            // Optional: Generate a new secret number so they can play again!
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+        } else if (userGuess > secretNumber) {
+            gameMessage.textContent = "📈 Too high! Try a lower number.";
+            gameMessage.style.color = "#c0392b";
+        } else {
+            gameMessage.textContent = "📉 Too low! Try a higher number.";
+            gameMessage.style.color = "#c0392b";
+        }
 
-.card {
-    background-color: #2a2a2a; /* Lighter dark shade for the card so it pops */
-    color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Deeper shadow for dark mode depth */
-    max-width: 400px;
-    width: 100%;
-}
-
-/* Button styling */
-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-/* Footer styling */
-footer {
-    background-color: #111111; /* Matching deep charcoal footer */
-    color: #888888; /* Muted text color for the footer */
-    padding: 1rem;
-    font-size: 0.9rem;
-    border-top: 1px solid #333333; /* Subtle dividing line */
-}
+        // Clear the input box for the next try
+        userGuessInput.value = '';
+    });
+});
