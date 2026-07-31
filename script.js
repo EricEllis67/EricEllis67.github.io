@@ -140,3 +140,124 @@ footer {
     margin-top: 12px;
     font-weight: 500;
 }
+// --- Timer Logic ---
+const totalTime = 25 * 60;
+let timeLeft = totalTime;
+let timerId = null;
+let isRunning = false;
+
+const timerDisplay = document.getElementById('timerDisplay');
+const startBtn = document.getElementById('startBtn');
+const resetBtn = document.getElementById('resetBtn');
+
+function updateDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+function toggleTimer() {
+    if (isRunning) {
+        clearInterval(timerId);
+        startBtn.textContent = "Resume";
+        isRunning = false;
+    } else {
+        isRunning = true;
+        startBtn.textContent = "Pause";
+        timerId = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateDisplay();
+            } else {
+                clearInterval(timerId);
+                alert("Focus session complete! Take a breather.");
+                resetTimer();
+            }
+        }, 1000);
+    }
+}
+
+function resetTimer() {
+    clearInterval(timerId);
+    isRunning = false;
+    timeLeft = totalTime;
+    startBtn.textContent = "Start Flow";
+    updateDisplay();
+}
+
+startBtn.addEventListener('click', toggleTimer);
+resetBtn.addEventListener('click', resetTimer);
+
+// --- Web Audio API Ambient Sound Generator ---
+let audioCtx = null;
+let oscillator = null;
+let gainNode = null;
+
+const vibeButtons = document.querySelectorAll('.vibe-btn');
+
+vibeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const freq = parseInt(btn.dataset.freq);
+
+        if (btn.classList.contains('active')) {
+            stopAudio();
+            btn.classList.remove('active');
+            return;
+        }
+
+        vibeButtons.forEach(b => b.classList.remove('active'));
+        stopAudio();
+
+        playTone(freq);
+        btn.classList.add('active');
+    });
+});
+
+function playTone(freq) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    oscillator = audioCtx.createOscillator();
+    gainNode = audioCtx.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+    gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 1);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    oscillator.start();
+}
+
+function stopAudio() {
+    if (oscillator) {
+        try {
+            oscillator.stop();
+            oscillator.disconnect();
+        } catch(e) {}
+        oscillator = null;
+    }
+    if (audioCtx) {
+        audioCtx.close();
+        audioCtx = null;
+    }
+}
+
+// --- Local Storage Micro Journal ---
+const intentionInput = document.getElementById('intentionInput');
+const saveStatus = document.getElementById('saveStatus');
+
+if (localStorage.getItem('focus_intention')) {
+    intentionInput.value = localStorage.getItem('focus_intention');
+}
+
+let timeoutId;
+intentionInput.addEventListener('input', () => {
+    clearTimeout(timeoutId);
+    localStorage.setItem('focus_intention', intentionInput.value);
+    
+    saveStatus.style.opacity = '1';
+    timeoutId = setTimeout(() => {
+        saveStatus.style.opacity = '0';
+    }, 1500);
+});
