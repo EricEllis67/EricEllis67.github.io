@@ -1,68 +1,41 @@
-// Wait for the HTML document to fully load before running code
-document.addEventListener('DOMContentLoaded', () => {
-  
-  /* style.css - Controls the design and appearance of your website */
+// script.js - Adds interactivity and the mini-game logic using standard JavaScript
 
-/* Style the entire body of the webpage */
-body {
-    /* Sets the background color to black */
-    background-color: #000000;
-    
-    /* Sets the text color to white so it is readable against the black background */
-    color: #ffffff;
-    
-    /* Sets a clean, modern font for the whole page */
-    font-family: Arial, sans-serif;
-    
-    /* Adds some space around the edges of the page */
-    margin: 40px;
-    
-    /* Centers the text (you can change this to 'left' if you prefer) */
-    text-align: center;
-}
+// Grab elements for the greeting button
+const greetBtn = document.getElementById('greetBtn');
+const message = document.getElementById('message');
 
-/* Style for the main heading */
-h1 {
-    /* Gives our main title a cool neon cyan color to pop against the black */
-    color: #00ffff;
-}
-    
-    // Generate a random secret number between 1 and 10 for the game
-    let secretNumber = Math.floor(Math.random() * 10) + 1;
-    
-    // Grab elements from our HTML document
-    const guessBtn = document.getElementById('guessBtn');
-    const userGuessInput = document.getElementById('userGuess');
-    const gameMessage = document.getElementById('gameMessage');
+// Listen for a click event on the greeting button
+greetBtn.addEventListener('click', function() {
+    message.textContent = "Thanks for visiting my portfolio! Good luck with college applications!";
+    message.style.color = "#00ffff";
+});
 
-    // Add an event listener to listen for a 'click' on the guess button
-    guessBtn.addEventListener('click', () => {
-        // Convert the user's input text into a number
-        const userGuess = Number(userGuessInput.value);
+// --- Mini Game Logic ---
+// Generate a random lucky number between 1 and 10
+const secretNumber = Math.floor(Math.random() * 10) + 1;
 
-        // Validate if the input is empty or out of range
-        if (!userGuess || userGuess < 1 || userGuess > 10) {
-            gameMessage.textContent = "⚠️ Please enter a number between 1 and 10!";
-            gameMessage.style.color = "#e67e22";
-            return;
-        }
+// Grab elements for the mini game
+const guessInput = document.getElementById('guessInput');
+const guessBtn = document.getElementById('guessBtn');
+const gameMessage = document.getElementById('gameMessage');
 
-        // Check if the user's guess matches the secret number
-        if (userGuess === secretNumber) {
-            gameMessage.textContent = "🎉 Correct! You won the game!";
-            gameMessage.style.color = "#27ae60";
-            
-            // Optional: Generate a new secret number so they can play again!
-            secretNumber = Math.floor(Math.random() * 10) + 1;
-        } else if (userGuess > secretNumber) {
-            gameMessage.textContent = "📈 Too high! Try a lower number.";
-            gameMessage.style.color = "#c0392b";
-        } else {
-            gameMessage.textContent = "📉 Too low! Try a higher number.";
-            gameMessage.style.color = "#c0392b";
-        }
+// Listen for a click on the guess button
+guessBtn.addEventListener('click', function() {
+    // Get the user's guess and convert it to a number
+    const userGuess = Number(guessInput.value);
 
-        // Clear the input box for the next try
-        userGuessInput.value = '';
-    });
+    // Check if the guess matches the secret number
+    if (userGuess === secretNumber) {
+        gameMessage.textContent = "🎉 Boom! You guessed it right!";
+        gameMessage.style.color = "#00ff00"; // Green for success
+    } else if (userGuess < secretNumber) {
+        gameMessage.textContent = "📈 Too low! Try a higher number.";
+        gameMessage.style.color = "#ff007f"; // Pink for hints
+    } else if (userGuess > secretNumber) {
+        gameMessage.textContent = "📉 Too high! Try a lower number.";
+        gameMessage.style.color = "#ff007f"; // Pink for hints
+    } else {
+        gameMessage.textContent = "⚠️ Please enter a valid number between 1 and 10.";
+        gameMessage.style.color = "#ffff00"; // Yellow for warnings
+    }
 });
