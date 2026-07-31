@@ -1,12 +1,11 @@
-// script.js - Adds interactivity and the mini-game logic using standard JavaScript
+// script.js - Handles interactivity for the greeting and mini-game
 
-// Grab elements for the greeting button
+// --- Greeting Button Logic ---
 const greetBtn = document.getElementById('greetBtn');
 const message = document.getElementById('message');
 
-// Listen for a click event on the greeting button
 greetBtn.addEventListener('click', function() {
-    message.textContent = "Thanks for visiting my portfolio! Good luck with college applications!";
+    message.textContent = "✨ Thanks for visiting! I'm excited for my future in tech.";
     message.style.color = "#00ffff";
 });
 
@@ -14,28 +13,24 @@ greetBtn.addEventListener('click', function() {
 // Generate a random lucky number between 1 and 10
 const secretNumber = Math.floor(Math.random() * 10) + 1;
 
-// Grab elements for the mini game
 const guessInput = document.getElementById('guessInput');
 const guessBtn = document.getElementById('guessBtn');
 const gameMessage = document.getElementById('gameMessage');
 
-// Listen for a click on the guess button
 guessBtn.addEventListener('click', function() {
-    // Get the user's guess and convert it to a number
     const userGuess = Number(guessInput.value);
 
-    // Check if the guess matches the secret number
     if (userGuess === secretNumber) {
         gameMessage.textContent = "🎉 Boom! You guessed it right!";
         gameMessage.style.color = "#00ff00"; // Green for success
     } else if (userGuess < secretNumber) {
         gameMessage.textContent = "📈 Too low! Try a higher number.";
-        gameMessage.style.color = "#ff007f"; // Pink for hints
+        gameMessage.style.color = "#ff007f"; // Pink hint
     } else if (userGuess > secretNumber) {
         gameMessage.textContent = "📉 Too high! Try a lower number.";
-        gameMessage.style.color = "#ff007f"; // Pink for hints
+        gameMessage.style.color = "#ff007f"; // Pink hint
     } else {
         gameMessage.textContent = "⚠️ Please enter a valid number between 1 and 10.";
-        gameMessage.style.color = "#ffff00"; // Yellow for warnings
+        gameMessage.style.color = "#ffff00"; // Yellow warning
     }
 });
