@@ -1,5 +1,6 @@
 // Wait for the HTML document to fully load before running code
 document.addEventListener('DOMContentLoaded', () => {
+  
   /* style.css - Controls the design and appearance of your website */
 
 /* Style the entire body of the webpage */
