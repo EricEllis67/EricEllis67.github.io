@@ -1,78 +1,77 @@
-/* General body styles and centering */
+/* style.css - Controls the design and appearance */
+
+/* Set up the overall page with a black background and white text */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    text-align: center;
-    padding: 50px;
+    background-color: #0b0b0b; /* Sleek near-black background */
+    color: #f0f0f0;            /* Bright white-ish text for readability */
+    font-family: Arial, sans-serif;
     margin: 0;
-}
-
-/* Header styling */
-header h1 {
-    color: #4a90e2;
-    margin-bottom: 10px;
-}
-
-/* Card container styling */
-.card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-    margin-top: 20px;
-    max-width: 400px;
-    width: 100%;
-    vertical-align: top;
-}
-
-/* Specific styling for the About Me card */
-.about-card {
-    margin-right: 20px;
-}
-
-.about-card p {
-    line-height: 1.6;
-    color: #555;
-}
-
-/* Game input and button layout */
-.game-box {
-    margin: 20px 0;
-}
-
-input[type="number"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    width: 120px;
-    margin-right: 10px;
+    padding: 40px 20px;
     text-align: center;
 }
 
-/* Button styling */
+/* Header Styling */
+header {
+    margin-bottom: 40px;
+}
+
+h1 {
+    color: #00ffff; /* Neon cyan accent for your main title */
+    margin-bottom: 5px;
+}
+
+/* Layout container for our sections */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Space between each box */
+}
+
+/* Individual Content Areas (Cards) */
+.card {
+    background-color: #1a1a1a; /* Slightly lighter dark gray for contrast */
+    border: 1px solid #333333; /* Subtle border */
+    border-radius: 8px;       /* Rounded corners */
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;         /* Keeps the cards from getting too wide */
+    text-align: left;         /* Align text nicely inside the cards */
+}
+
+.card h2 {
+    color: #ffffff;           /* Neon pink accent for section titles */
+    margin-top: 0;
+}
+
+/* Styling for input fields inside cards */
+input[type="number"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #2b2b2b;
+    color: #fff;
+    margin-right: 10px;
+    width: 150px;
+}
+
+/* Footer / Button Styling */
+footer {
+    margin-top: 40px;
+}
+
 button {
-    background-color: #4a90e2;
-    color: white;
+    background-color: #00ffff;
+    color: #0b0b0b;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Button hover effect */
-button:hover {
-    background-color: #357abd;
-}
-
-/* Message text styling */
-.message {
     font-weight: bold;
-    font-size: 18px;
-    margin-top: 15px;
-    min-height: 24px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00cccc; /* Darkens slightly when you hover over it */
 }
